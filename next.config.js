@@ -3,5 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
 }
+module.exports = {
+  images: {
+    domains: [
+      "links.papareact.com",
+      "img.onmanorama.com",
+      "lh3.googleusercontent.com"
+    ]
+  }
+}
 
-module.exports = nextConfig
