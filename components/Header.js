@@ -7,7 +7,7 @@ import { useStateValue } from './StateProvider';
 function Header() {
     const [{ user }, dispath] = useStateValue();
 
-    console.log('siccess', user)
+
     return (
         <div className='flex justify-between items-center'>
             <div className='flex space-x-20 items-center m-5'>

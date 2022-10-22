@@ -8,7 +8,8 @@ module.exports = {
     domains: [
       "links.papareact.com",
       "img.onmanorama.com",
-      "lh3.googleusercontent.com"
+      "lh3.googleusercontent.com",
+      "firebasestorage.googleapis.com"
     ]
   }
 }

@@ -1,4 +1,4 @@
-import { AcademicCapIcon, BookOpenIcon, CalendarIcon, ChatIcon, LibraryIcon, ShareIcon, UserGroupIcon } from '@heroicons/react/outline'
+import { AcademicCapIcon, BookOpenIcon, CalendarIcon, ChatIcon, ChevronLeftIcon, ChevronRightIcon, LibraryIcon, ShareIcon, UserGroupIcon } from '@heroicons/react/outline'
 import Head from 'next/head'
 import { useState } from 'react'
 import Community from '../components/Community'
@@ -8,11 +8,12 @@ import Login from '../components/Login'
 import { auth, provider } from '../firebase'
 import { actionTypes } from '../components/reducer'
 import { useStateValue } from '../components/StateProvider'
-
+import Image from 'next/image'
 
 export default function Home() {
   const [session, setSession] = useState(false)
   const [current, setCurrent] = useState('Academic')
+  const [drawer, setDrawer] = useState(1)
   const [{ }, dispath] = useStateValue();
 
 
@@ -24,7 +25,7 @@ export default function Home() {
     //     type: actionTypes.SET_USER,
     //     user: result.user
     //   })
-
+    //   setSession(true)
     // }).catch(error => {
     //   alert(error.message)
     // });
@@ -42,14 +43,39 @@ export default function Home() {
       </Head>
 
       <Header />
-      <div className='absolute bg-[#f9f1f0] max-w-fit p-3 space-y-8 h-[100vh]'>
-        <AcademicCapIcon className='h-7' onClick={() => setCurrent('Academic')} />
-        <ChatIcon className='h-7 ' />
-        <CalendarIcon className='h-12 p-2
+      <div className='absolute '>
+        <div className=' p-2 z-50 mb-2  overflow-hidden bg-white rounded-3xl border 
+        flex space-x-3 items-center transition-all duration-300'>
+          {
+            [...Array(drawer)].map((e, i) => <>
+              <div className='  '>
+                <img src="/socio.jpeg" className='rounded-lg border  
+                h-[60px] w-[60px] p-1 object-contain'
+                />
+              </div>
+            </>)
+          }
+
+          {
+            drawer == 1 ?
+              <ChevronRightIcon onClick={() => setDrawer(3)} className='h-8 cursor-pointer' /> :
+
+              <ChevronLeftIcon onClick={() => setDrawer(1)} className='h-8 cursor-pointer' />
+          }
+
+        </div>
+
+
+        <div className=' bg-[#f9f1f0] max-w-fit p-3 space-y-8 h-[100vh]'>
+          <AcademicCapIcon className='h-7' onClick={() => setCurrent('Academic')} />
+          <ChatIcon className='h-7 ' />
+          <CalendarIcon className='h-12 p-2
          text-white rounded-full bg-[#6E798C]' />
-        <UserGroupIcon className='h-7 ' onClick={() => setCurrent('Community')} />
-        <ShareIcon className='h-7 ' />
-        <BookOpenIcon className='h-7 ' />
+          <UserGroupIcon className='h-7 ' onClick={() => setCurrent('Community')} />
+          <ShareIcon className='h-7 ' />
+          <BookOpenIcon className='h-7 ' />
+        </div>
+
       </div>
       {/* <Feed /> */}
       {
