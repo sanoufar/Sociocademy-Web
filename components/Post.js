@@ -12,7 +12,7 @@ function Poll({ title }) {
     )
 }
 
-function Post({ timestamp, name, title, message, image, postImage, poll }) {
+function Post({ timestamp, name, title, message, image, postImage, poll, options }) {
     const [liked, setLiked] = useState(false)
     return (
         <div className='flex flex-col'>
@@ -30,10 +30,12 @@ function Post({ timestamp, name, title, message, image, postImage, poll }) {
                 {
                     poll ? <div className='space-y-3 mt-3 mb-4'>
                         <p className='font-semibold mt-3 mb-4'>{title}</p>
-                        <Poll title="Pranav" />
-                        <Poll title="Nivin" />
-                        <Poll title="Tovino" />
-                        <Poll title="Dulquer" />
+                        {
+                            options?.map(op => (
+                                <Poll title={op.option} />
+                            ))
+                        }
+
                     </div> : <div className='max-w-2xl pt-4 px-1'>
                         <p className='font-semibold'>{title}</p>
                         <p className='pt-3 font-normal'>{message}</p>

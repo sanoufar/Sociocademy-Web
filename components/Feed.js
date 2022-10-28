@@ -4,7 +4,7 @@ import RightSide from './RightSide'
 import Stories from './Stories'
 import { useStateValue } from './StateProvider';
 import Image from 'next/image'
-import db, { storage } from '../firebase';
+import db, { storage } from '../firebases';
 import firebase from 'firebase'
 
 
@@ -24,6 +24,7 @@ function PostModal({ toggler }) {
     const [imageToPost, setimageToPost] = useState(null)
     const [currentview, setCurrentView] = useState('default')
     const [optionLimit, setOptionLimit] = useState(3)
+    const [{ user }, dispath] = useStateValue();
 
     const filepickerRef = useRef(null)
     const titleRef = useRef(null)
@@ -39,9 +40,23 @@ function PostModal({ toggler }) {
 
         const options = []
         for (let index = 0; index < optionLimit; index++) {
-            options.push(optionsRef.current[index].current.value)
+            var f = optionsRef.current[index].current.value
+            options.push({ option: f, vote: 0 })
         }
         console.log(options)
+        db.collection('posts').add({
+            category: 'poll',
+            title: titleRef.current.value,
+            options: options,
+            name: user?.displayName,
+            email: user?.email,
+            image: user?.photoURL,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
+
+        titleRef.current.value = ''
+        optionsRef.current.value = []
+        toggler(false)
     }
 
 
@@ -51,9 +66,9 @@ function PostModal({ toggler }) {
         db.collection('posts').add({
             title: titleRef.current.value,
             message: messageRef.current.value,
-            name: 'ABHIJITH B',
-            email: 'abhijith@123.com',
-            image: 'https://lh3.googleusercontent.com/ogw/AOh-ky3LwquE93A_I_xcU37neyC2TP-zVWJj3SRMtJe4=s32-c-mo',
+            name: user?.displayName,
+            email: user?.email,
+            image: user?.photoURL,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(doc => {
             if (imageToPost) {
@@ -245,3 +260,4 @@ function Feed() {
 }
 
 export default Feed
+export { PostModal }

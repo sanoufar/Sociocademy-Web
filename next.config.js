@@ -9,7 +9,8 @@ module.exports = {
       "links.papareact.com",
       "img.onmanorama.com",
       "lh3.googleusercontent.com",
-      "firebasestorage.googleapis.com"
+      "firebasestorage.googleapis.com",
+      "i.pinimg.com"
     ]
   }
 }

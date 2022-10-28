@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .icon {
+        @apply bg-[#6E798C] text-white rounded-xl;
+    }
+
+    .admin_option {
+        @apply hover:bg-[#EDECEC] pl-10 py-3 cursor-pointer;
+    }
+
+
+}

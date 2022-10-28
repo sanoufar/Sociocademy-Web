@@ -6,14 +6,13 @@ import "firebase/storage"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyA1qAGM9xaEUuG5ZRZTTCHp1my0RwjrvhE",
-    authDomain: "sociocademy-b8232.firebaseapp.com",
-    projectId: "sociocademy-b8232",
-    storageBucket: "sociocademy-b8232.appspot.com",
-    messagingSenderId: "778609524211",
-    appId: "1:778609524211:web:2f3114a30f7b258ab82686"
+    apiKey: "AIzaSyC2mCREJPS8P1PdtbplSXEwHoZjKf-YFLU",
+    authDomain: "sociocademy-e467b.firebaseapp.com",
+    projectId: "sociocademy-e467b",
+    storageBucket: "sociocademy-e467b.appspot.com",
+    messagingSenderId: "122254276347",
+    appId: "1:122254276347:web:097c71f181ed55611ee25e"
 };
-
 const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
 const db = app.firestore()

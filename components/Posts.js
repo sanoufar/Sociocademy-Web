@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Post from './Post'
-import db from '../firebase'
+import db from '../firebases'
 
 function Posts() {
     const [realtimePost, setRealtimepost] = useState(null)
@@ -13,11 +13,6 @@ function Posts() {
 
     return (
         <div>
-            <Post name="Abhijith B"
-                title="Who should be your next class leader?"
-                image="/elon.jpg"
-                poll
-            />
             {
                 realtimePost?.map(post => (
                     <Post
@@ -27,7 +22,10 @@ function Posts() {
                         message={post.message}
                         image={post.image}
                         postImage={post.postImage}
-                        timestamp={post.timestamp} />
+                        timestamp={post.timestamp}
+                        poll={post.category && true}
+                        options={post.options}
+                    />
                 ))
             }
         </div>
