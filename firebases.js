@@ -4,15 +4,27 @@ import "firebase/storage"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+
+//fake
+
 const firebaseConfig = {
-    apiKey: "AIzaSyC2mCREJPS8P1PdtbplSXEwHoZjKf-YFLU",
-    authDomain: "sociocademy-e467b.firebaseapp.com",
-    projectId: "sociocademy-e467b",
-    storageBucket: "sociocademy-e467b.appspot.com",
-    messagingSenderId: "122254276347",
-    appId: "1:122254276347:web:097c71f181ed55611ee25e"
-};
+    apiKey: "AIzaSyBrBcSDbzAfiXEQm3ab8W4YwYj15syM4hM",
+    authDomain: "esoteric-bruin-86807.firebaseapp.com",
+    projectId: "esoteric-bruin-86807",
+    storageBucket: "esoteric-bruin-86807.appspot.com",
+    messagingSenderId: "614433729343",
+    appId: "1:614433729343:web:e9a36b73bc9a52e1cd818a"
+}
+
+// Your web app's Firebase configuration
+// const firebaseConfig = {
+//     apiKey: "AIzaSyC2mCREJPS8P1PdtbplSXEwHoZjKf-YFLU",
+//     authDomain: "sociocademy-e467b.firebaseapp.com",
+//     projectId: "sociocademy-e467b",
+//     storageBucket: "sociocademy-e467b.appspot.com",
+//     messagingSenderId: "122254276347",
+//     appId: "1:122254276347:web:097c71f181ed55611ee25e"
+// };
 const app = !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app()
 
 const db = app.firestore()

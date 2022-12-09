@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 
 
-function StoryCard() {
+function StoryCard({ name }) {
 
     const colors = ['#F395BA', '#4FBECB', '#7CC39E']
     return (
@@ -19,11 +19,11 @@ function StoryCard() {
             <div className='flex space-x-1'>
                 {
                     [...Array(3)].map((e, i) => <div className='
-                    w-5 h-[3px]' style={{ 'background-color': `${colors[i]}` }}></div>)
+                    w-5 h-[3px]' style={{ 'background-color': `${colors[i]}` }} key={i}></div>)
                 }
 
             </div>
-            <p className='text-center mt-1 text-sm font-medium'>Abhijith B </p>
+            <p className='text-center mt-1 text-sm font-medium'>{name} </p>
         </div>
 
     )

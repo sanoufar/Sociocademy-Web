@@ -32,7 +32,7 @@ function Post({ timestamp, name, title, message, image, postImage, poll, options
                         <p className='font-semibold mt-3 mb-4'>{title}</p>
                         {
                             options?.map(op => (
-                                <Poll title={op.option} />
+                                <Poll title={op.option} key={op.id} />
                             ))
                         }
 

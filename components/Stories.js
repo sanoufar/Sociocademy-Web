@@ -37,7 +37,7 @@ function Stories() {
     return (
         <div className='bg-white pb-10'>
 
-            <p className='p-5  text-xl font-semibold'>Stories</p>
+            <p className='p-5  text-xl font-semibold'>Moments</p>
             <div className='flex space-x-3 px-10 items-center'>
                 <div className='relative '>
                     <div className='h-[78px] p-1 rounded-full 
@@ -56,11 +56,11 @@ function Stories() {
 
                 </div>
 
-                <StoryCard />
-                <StoryCard />
-                <StoryCard />
-                <StoryCard />
-                <StoryCard />
+                <StoryCard name="DUK" />
+                <StoryCard name="Ted" />
+                <StoryCard name="Harward" />
+                <StoryCard name="AICTE" />
+                <StoryCard name="Oxford" />
             </div>
         </div >
     )

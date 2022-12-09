@@ -1,10 +1,21 @@
 import React from 'react'
 import Image from 'next/image'
 import { CalendarIcon, ClockIcon } from '@heroicons/react/outline'
+import { useStateValue } from './StateProvider';
+import { actionTypes } from './reducer'
 
 function LectureCard({ myclass }) {
+    const [{ }, dispath] = useStateValue();
+
+    const handleIncrease = (e) => {
+        dispath({
+            type: actionTypes.SET_CLASSROOM,
+            classroom: e
+
+        })
+    }
     return (
-        <div className='border-2 cursor-pointer m-3 shadow-md rounded-xl w-[46%] p-3'>
+        <div onClick={() => handleIncrease("Artificial Intelligence")} className='border-2 cursor-pointer m-3 shadow-md rounded-xl w-[46%] p-3'>
             <div className='flex items-start justify-between'>
                 <div className='text-center'>
                     <Image src='https://i.pinimg.com/originals/4a/3b/1a/4a3b1abae4f1f97688d1250222552bef.png' className='rounded-full'

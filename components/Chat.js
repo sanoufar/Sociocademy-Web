@@ -49,7 +49,7 @@ function Message({ me, message, image, timestamp }) {
     )
 }
 
-function messaging() {
+function Chat() {
     const [input, setInput] = useState(null)
     const [messages, setMessages] = useState(null)
     const [{ user }, dispath] = useStateValue();
@@ -110,7 +110,7 @@ function messaging() {
                             contacts && contacts.map(contact => (
                                 <LeftChat name={contact.name} id={contact.email} image={contact.image}
                                     currentvar={currentContact}
-                                    setCurrentContacts={setCurrentContacts} />
+                                    setCurrentContacts={setCurrentContacts} key={contact.id} />
                             ))
                         }
                     </div>
@@ -137,7 +137,7 @@ function messaging() {
                                         <Message message={message.message}
                                             me={message.name == username && true}
                                             image={message.image}
-                                            timestamp={message.timestamp} />
+                                            timestamp={message.timestamp} key={message.id} />
                                     ))
                                 }
 
@@ -170,4 +170,4 @@ function messaging() {
     )
 }
 
-export default messaging
+export default Chat

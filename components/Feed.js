@@ -63,19 +63,19 @@ function PostModal({ toggler }) {
     const sendPost = (e) => {
         e.preventDefault();
 
-        db.collection('posts').add({
+        db.collection('users').add({
             title: titleRef.current.value,
             message: messageRef.current.value,
-            name: user?.displayName,
-            email: user?.email,
-            image: user?.photoURL,
+            // name: user?.displayName,
+            // email: user?.email,
+            // image: user?.photoURL,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(doc => {
             if (imageToPost) {
                 const uploadTask = storage.ref(`posts/${doc.id}`).putString(imageToPost, 'data_url')
                 removeImage()
 
-                uploadTask.on('state_change', null, error => console.error(error), () => {
+                uploadTask.on('state_change', null, error => console.error("error", error), () => {
                     //upload completes
 
                     storage.ref('posts').child(doc.id).getDownloadURL().then(url => {
@@ -191,7 +191,7 @@ function PostModal({ toggler }) {
                                     {
                                         [...Array(optionLimit)].map((e, i) => {
                                             return (
-                                                <div className='bg-gray-200 px-4 py-2 rounded-lg'>
+                                                <div className='bg-gray-200 px-4 py-2 rounded-lg' key={i}>
                                                     <input ref={optionsRef.current[i]} className='outline-none bg-transparent w-full' placeholder={`Option ${i + 1}`} />
                                                 </div>
                                             )
@@ -235,7 +235,7 @@ function Feed() {
 
                 <div className='bg-white my-3 p-5
                 rounded-lg flex items-center  shadow-lg space-x-3'>
-                    <Image src='/elon.jpg' width="60" height="60" className='rounded-full' layout="intrinsic" />
+                    <Image src={user?.photoURL} width="60" height="60" className='rounded-full' layout="intrinsic" />
                     <div
                         className='w-full 
                         rounded-xl bg-gray-100 

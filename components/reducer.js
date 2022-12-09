@@ -1,11 +1,13 @@
 export const initialState = {
     user: null,
-    now_playing: null
+    now_playing: null,
+    classroom: null
 };
 
 export const actionTypes = {
     SET_USER: "SET_USER",
-    SET_NOW_PLAYING: "SET_NOW_PLAYING"
+    SET_NOW_PLAYING: "SET_NOW_PLAYING",
+    SET_CLASSROOM: "SET_CLASSROOM"
 }
 
 const reducer = (state, action) => {
@@ -20,6 +22,11 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 now_playing: action.now_playing
+            };
+        case actionTypes.SET_CLASSROOM:
+            return {
+                ...state,
+                classroom: action.classroom
             }
         default:
             return state;

@@ -24,17 +24,23 @@ export default function Home() {
 
   function signIn() {
 
-    setSession(true)
-    // auth.signInWithPopup(provider).then(result => {
-    //   console.log(result.user)
-    //   dispath({
-    //     type: actionTypes.SET_USER,
-    //     user: result.user
-    //   })
-    //   setSession(true)
-    // }).catch(error => {
-    //   alert(error.message)
-    // });
+
+
+    // setSession(true)
+    auth.signInWithEmailAndPassword("john@urbanclap.com", "123456").then(result => {
+      console.log('sa', result.user)
+
+
+
+
+      // dispath({
+      //   type: actionTypes.SET_USER,
+      //   user: result.user
+      // })
+      // setSession(true)
+    }).catch(error => {
+      alert(error.message)
+    });
   }
   if (!session) return <Login signIn={signIn} />
 
@@ -115,7 +121,7 @@ export default function Home() {
 
                   <p>Clubs</p>
                 </div>
-                <div className='flex space-x-5  p-3 w-full items-center hover:bg-[#1C1F37] cursor-pointer hover:text-white'>
+                <div onClick={() => setCurrent('Community')} className='flex space-x-5  p-3 w-full items-center hover:bg-[#1C1F37] cursor-pointer hover:text-white'>
                   <svg width="20" height="22" viewBox="0 0 20 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_218_1255)">
                       <path d="M16.6666 6.41675H3.33329C2.41282 6.41675 1.66663 7.23756 1.66663 8.25008V18.3334C1.66663 19.3459 2.41282 20.1667 3.33329 20.1667H16.6666C17.5871 20.1667 18.3333 19.3459 18.3333 18.3334V8.25008C18.3333 7.23756 17.5871 6.41675 16.6666 6.41675Z" stroke="#332F2F" stroke-opacity="0.8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -144,7 +150,7 @@ export default function Home() {
             <CalendarIcon className=' h-8 ' />
           </div>
           <div className='p-3 cursor-pointer '>
-            <UserGroupIcon className='h-8 ' onClick={() => setCurrent('Community')} />
+            <UserGroupIcon className='h-8 ' />
           </div>
           <div className='p-3 cursor-pointer'>
             <ShareIcon className='h-8 ' />
@@ -152,12 +158,12 @@ export default function Home() {
           <div className='p-3 cursor-pointer'>
             <BookOpenIcon className='h-8 ' />
           </div>
-          <div className='p-3 cursor-pointer'>
+          {/* <div className='p-3 cursor-pointer'>
             <svg width="30" height="35" onClick={() => setCurrent('Admin')} viewBox="0 0 22 22" fill="black" xmlns="http://www.w3.org/2000/svg">
               <path d="M12.7013 5.33489C12.5181 5.52182 12.4155 5.77314 12.4155 6.03489C12.4155 6.29664 12.5181 6.54796 12.7013 6.73489L14.3013 8.33489C14.4882 8.51812 14.7396 8.62075 15.0013 8.62075C15.2631 8.62075 15.5144 8.51812 15.7013 8.33489L19.4713 4.56489C19.9742 5.67608 20.1264 6.91413 19.9078 8.11404C19.6892 9.31395 19.11 10.4187 18.2476 11.2812C17.3852 12.1436 16.2804 12.7227 15.0805 12.9413C13.8806 13.16 12.6425 13.0077 11.5313 12.5049L4.62132 19.4149C4.2235 19.8127 3.68393 20.0362 3.12132 20.0362C2.55871 20.0362 2.01914 19.8127 1.62132 19.4149C1.2235 19.0171 1 18.4775 1 17.9149C1 17.3523 1.2235 16.8127 1.62132 16.4149L8.53132 9.50489C8.02848 8.3937 7.87624 7.15566 8.09486 5.95575C8.31349 4.75584 8.89261 3.65105 9.75504 2.78861C10.6175 1.92618 11.7223 1.34706 12.9222 1.12843C14.1221 0.909808 15.3601 1.06206 16.4713 1.56489L12.7013 5.33489Z" stroke="#FDFDFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
 
-          </div>
+          </div> */}
         </div>
 
       </div>
@@ -167,7 +173,7 @@ export default function Home() {
           'Feed': <Feed />,
           'Academic': <Academic />,
           'Community': <Community />,
-          'Admin': <Admin />,
+          // 'Admin': <Admin />,
           'Chat': <Chat />,
 
         }[current]
