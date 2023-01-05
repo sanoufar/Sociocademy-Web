@@ -12,6 +12,8 @@ import Image from 'next/image'
 import Academic from '../components/Academic'
 import Admin from '../components/Admin'
 import Chat from '../components/Chat'
+import Spaces from '../components/Spaces'
+import Profile from '../components/Profile'
 
 
 export default function Home() {
@@ -24,17 +26,17 @@ export default function Home() {
 
   function signIn() {
 
-    // setSession(true)
-    auth.signInWithPopup(provider).then(result => {
-      console.log(result.user)
-      dispath({
-        type: actionTypes.SET_USER,
-        user: result.user
-      })
-      setSession(true)
-    }).catch(error => {
-      alert(error.message)
-    });
+    setSession(true)
+    // auth.signInWithPopup(provider).then(result => {
+    //   console.log(result.user)
+    //   dispath({
+    //     type: actionTypes.SET_USER,
+    //     user: result.user
+    //   })
+    //   setSession(true)
+    // }).catch(error => {
+    //   alert(error.message)
+    // });
   }
   if (!session) return <Login signIn={signIn} />
 
@@ -144,13 +146,13 @@ export default function Home() {
             <CalendarIcon className=' h-8 ' />
           </div>
           <div className='p-3 cursor-pointer '>
-            <UserGroupIcon className='h-8 ' />
+            <UserGroupIcon className='h-8 ' onClick={() => setCurrent('Spaces')} />
           </div>
           <div className='p-3 cursor-pointer'>
             <ShareIcon className='h-8 ' />
           </div>
           <div className='p-3 cursor-pointer'>
-            <BookOpenIcon className='h-8 ' />
+            <BookOpenIcon className='h-8 ' onClick={() => setCurrent('Profile')} />
           </div>
           {/* <div className='p-3 cursor-pointer'>
             <svg width="30" height="35" onClick={() => setCurrent('Admin')} viewBox="0 0 22 22" fill="black" xmlns="http://www.w3.org/2000/svg">
@@ -169,6 +171,8 @@ export default function Home() {
           'Community': <Community />,
           // 'Admin': <Admin />,
           'Chat': <Chat />,
+          'Spaces': <Spaces />,
+          'Profile': <Profile />,
 
         }[current]
       }
