@@ -23,7 +23,6 @@ function Classroom() {
                     Artificial Intelligence</p>
             </div>
             <div className='w-full rounded-lg bg-white h-fit mt-5 p-5 shadow-lg'>
-                <p className='bg-[#F395BA] w-fit px-3 py-2 rounded-md font-medium'>Overview</p>
             </div>
             <div className='pt-10'>
 

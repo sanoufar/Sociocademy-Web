@@ -24,20 +24,14 @@ export default function Home() {
 
   function signIn() {
 
-
-
     // setSession(true)
-    auth.signInWithEmailAndPassword("john@urbanclap.com", "123456").then(result => {
-      console.log('sa', result.user)
-
-
-
-
-      // dispath({
-      //   type: actionTypes.SET_USER,
-      //   user: result.user
-      // })
-      // setSession(true)
+    auth.signInWithPopup(provider).then(result => {
+      console.log(result.user)
+      dispath({
+        type: actionTypes.SET_USER,
+        user: result.user
+      })
+      setSession(true)
     }).catch(error => {
       alert(error.message)
     });
