@@ -79,9 +79,9 @@ export default function Home() {
             onMouseEnter={() => setAcademicOption(true)}
             onMouseLeave={() => setAcademicOption(false)}>
             <div className='bg-white p-2 rounded-full shadow-lg'>
-              <div className={`${current == "Academic" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('Academic')}>
+              <div className={`${current == "Academic" && "bg-[#6E798C]" || current == "Community" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('Academic')}>
                 <svg width="28" height="25" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill={current == "Academic" ? "white" : "black"} d="M11 18L4 14.2V8.2L0 6L11 0L22 6V14H20V7.1L18 8.2V14.2L11 18ZM11 9.7L17.85 6L11 2.3L4.15 6L11 9.7ZM11 15.725L16 13.025V9.25L11 12L6 9.25V13.025L11 15.725Z" />
+                  <path fill={current == "Academic" && "bg-[#6E798C]" || current == "Community" ? "white" : "black"} d="M11 18L4 14.2V8.2L0 6L11 0L22 6V14H20V7.1L18 8.2V14.2L11 18ZM11 9.7L17.85 6L11 2.3L4.15 6L11 9.7ZM11 15.725L16 13.025V9.25L11 12L6 9.25V13.025L11 15.725Z" />
                 </svg>
               </div>
             </div>
