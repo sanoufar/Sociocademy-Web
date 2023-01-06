@@ -5,7 +5,7 @@ import App from 'next/app'
 import { useStateValue } from './StateProvider';
 import { PostModal } from './Feed'
 
-function Header({ admin }) {
+function Header({ admin, setCurrent }) {
     const [{ user }, dispath] = useStateValue();
     const [postmodal, setPostModal] = useState(false);
 
@@ -32,7 +32,7 @@ function Header({ admin }) {
                     <SearchIcon className='h-6 ' />
                     <input className='flex-1  items-center bg-transparent outline-none placeholder-gray-500'
                         placeholder='Search for People, Institutions and Courses' />
-                    <Image src={user?.photoURL} width="40" height="40" className='rounded-full' layout="fixed" />
+                    <Image onClick={() => setCurrent('Profile')} src={user?.photoURL} width="40" height="40" className='rounded-full cursor-pointer' layout="fixed" />
 
                 </div>
 

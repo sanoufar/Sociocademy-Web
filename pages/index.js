@@ -26,17 +26,17 @@ export default function Home() {
 
   function signIn() {
 
-    setSession(true)
-    // auth.signInWithPopup(provider).then(result => {
-    //   console.log(result.user)
-    //   dispath({
-    //     type: actionTypes.SET_USER,
-    //     user: result.user
-    //   })
-    //   setSession(true)
-    // }).catch(error => {
-    //   alert(error.message)
-    // });
+    // setSession(true)
+    auth.signInWithPopup(provider).then(result => {
+      console.log(result.user)
+      dispath({
+        type: actionTypes.SET_USER,
+        user: result.user
+      })
+      setSession(true)
+    }).catch(error => {
+      alert(error.message)
+    });
   }
   if (!session) return <Login signIn={signIn} />
 
@@ -50,7 +50,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Header setCurrent={setCurrent} />
       <div className='absolute'>
         <div className=' p-2 z-50 mb-2 w-fit  overflow-hidden bg-white rounded-3xl border 
         flex space-x-3 items-center transition-all duration-300'>
@@ -74,16 +74,21 @@ export default function Home() {
         </div>
 
 
-        <div className=' bg-[#f9f1f0]   w-fit  space-y-3 h-fit pb-5'>
-          <div className='relative  p-3 pb-0 cursor-pointer '
+        <div className='   w-fit  space-y-3 h-fit pb-5'>
+          <div className='relative  px-3 pb-0 cursor-pointer '
             onMouseEnter={() => setAcademicOption(true)}
             onMouseLeave={() => setAcademicOption(false)}>
-            <AcademicCapIcon className='h-8 cursor-pointer '
-              onClick={() => setCurrent('Academic')}
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "Academic" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('Academic')}>
+                <svg width="28" height="25" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill={current == "Academic" ? "white" : "black"} d="M11 18L4 14.2V8.2L0 6L11 0L22 6V14H20V7.1L18 8.2V14.2L11 18ZM11 9.7L17.85 6L11 2.3L4.15 6L11 9.7ZM11 15.725L16 13.025V9.25L11 12L6 9.25V13.025L11 15.725Z" />
+                </svg>
+              </div>
+            </div>
 
-            />
-            <div className={`absolute  flex-col  space-x-5 rounded-xl bg-white left-[55px]
-            -top-1 w-[180px] ${academicOption ? 'block' : 'hidden'}`}
+
+            <div className={`absolute  flex-col  space-x-5 rounded-xl bg-white left-[80px]
+            z-50 top-2 w-[180px] ${academicOption ? 'block' : 'hidden'}`}
               onMouseLeave={() => setAcademicOption(false)}
             >
               <div>
@@ -139,20 +144,66 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='p-3 cursor-pointer '>
-            <ChatIcon className='h-8 ' onClick={() => setCurrent('Chat')} />
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-2xl'>
+              <div className={`${current == "Chat" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('Chat')}>
+                <svg width="28" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill={current == "Chat" ? "white" : "black"} d="M4 12H12V10H4V12ZM4 9H16V7H4V9ZM4 6H16V4H4V6ZM0 20V2C0 1.45 0.196 0.979 0.588 0.587C0.979333 0.195667 1.45 0 2 0H18C18.55 0 19.021 0.195667 19.413 0.587C19.8043 0.979 20 1.45 20 2V14C20 14.55 19.8043 15.021 19.413 15.413C19.021 15.8043 18.55 16 18 16H4L0 20ZM2 15.175L3.175 14H18V2H2V15.175Z" />
+                </svg>
+
+              </div>
+            </div>
           </div>
-          <div className='p-3 cursor-pointer  '>
-            <CalendarIcon className=' h-8 ' />
+
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "1" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('1')}>
+                <svg width="28" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill={current == "1" ? "white" : "black"} d="M12.7778 16C12 16 11.3426 15.7583 10.8056 15.275C10.2685 14.7917 10 14.2 10 13.5C10 12.8 10.2685 12.2083 10.8056 11.725C11.3426 11.2417 12 11 12.7778 11C13.5556 11 14.213 11.2417 14.75 11.725C15.287 12.2083 15.5556 12.8 15.5556 13.5C15.5556 14.2 15.287 14.7917 14.75 15.275C14.213 15.7583 13.5556 16 12.7778 16ZM2.22222 20C1.61111 20 1.08778 19.8043 0.652222 19.413C0.217407 19.021 0 18.55 0 18V4C0 3.45 0.217407 2.97933 0.652222 2.588C1.08778 2.196 1.61111 2 2.22222 2H3.33333V0H5.55556V2H14.4444V0H16.6667V2H17.7778C18.3889 2 18.9122 2.196 19.3478 2.588C19.7826 2.97933 20 3.45 20 4V18C20 18.55 19.7826 19.021 19.3478 19.413C18.9122 19.8043 18.3889 20 17.7778 20H2.22222ZM2.22222 18H17.7778V8H2.22222V18ZM2.22222 6H17.7778V4H2.22222V6Z" />
+                </svg>
+
+              </div>
+            </div>
           </div>
-          <div className='p-3 cursor-pointer '>
-            <UserGroupIcon className='h-8 ' onClick={() => setCurrent('Spaces')} />
+
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "2" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('2')}>
+                <svg width="28" height="25" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill={current == "2" ? "white" : "black"} d="M14.2426 0H5.75745C4.23045 0 2.766 0.606539 1.68627 1.68627C0.606539 2.766 0 4.2305 0 5.75745V14.2426C0 15.7696 0.606539 17.234 1.68627 18.3137C2.766 19.3935 4.2305 20 5.75745 20H14.2426C15.7696 20 17.234 19.3935 18.3137 18.3137C19.3935 17.234 20 15.7695 20 14.2426V5.75745C20 4.23045 19.3935 2.766 18.3137 1.68627C17.234 0.606539 15.7695 0 14.2426 0V0ZM5.75797 1.81816H14.2426C15.2864 1.82141 16.2864 2.23739 17.0246 2.9754C17.7626 3.71362 18.1786 4.71361 18.1818 5.75745V6.0604L2.12122 6.06061C2.01733 6.06203 1.91465 6.08252 1.81827 6.12108V5.75745C1.82151 4.71361 2.2375 3.71362 2.9755 2.9754C3.71373 2.23738 4.71372 1.82138 5.75755 1.81816L5.75797 1.81816ZM12.1215 18.1816H7.87909V13.9392H12.1215V18.1816ZM12.1215 12.1209H7.87909V7.87846H12.1215V12.1209ZM1.81827 7.818C1.91466 7.85655 2.01733 7.87705 2.12122 7.87867H6.06072V12.1211L2.12122 12.1209C2.01733 12.1225 1.91465 12.143 1.81827 12.1816V7.818ZM1.81827 14.2423V13.8787C1.91466 13.9173 2.01733 13.9378 2.12122 13.9392H6.06072V18.1816H5.75756C4.71372 18.1784 3.71373 17.7624 2.97551 17.0244C2.23749 16.2862 1.82149 15.2862 1.81827 14.2424L1.81827 14.2423ZM14.2426 18.1816H13.9396V7.87888H18.182L18.1818 14.2424C18.1786 15.2863 17.7626 16.2863 17.0246 17.0245C16.2864 17.7625 15.2864 18.1785 14.2426 18.1817L14.2426 18.1816Z" />
+                </svg>
+
+
+              </div>
+            </div>
           </div>
-          <div className='p-3 cursor-pointer'>
-            <ShareIcon className='h-8 ' />
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "Spaces" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('Spaces')}>
+
+
+              </div>
+            </div>
           </div>
-          <div className='p-3 cursor-pointer'>
-            <BookOpenIcon className='h-8 ' onClick={() => setCurrent('Profile')} />
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "3" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('3')}>
+                <svg width="28" height="25" viewBox="0 0 15 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill={current == "3" ? "white" : "black"} d="M7.25 20C6.81667 20 6.425 19.896 6.075 19.688C5.725 19.4793 5.45 19.2 5.25 18.85C4.7 18.85 4.22933 18.6543 3.838 18.263C3.446 17.871 3.25 17.4 3.25 16.85V13.3C2.26667 12.65 1.47933 11.7917 0.888 10.725C0.296 9.65833 0 8.5 0 7.25C0 5.23333 0.704 3.52067 2.112 2.112C3.52067 0.704 5.23333 0 7.25 0C9.26667 0 10.979 0.704 12.387 2.112C13.7957 3.52067 14.5 5.23333 14.5 7.25C14.5 8.53333 14.2043 9.7 13.613 10.75C13.021 11.8 12.2333 12.65 11.25 13.3V16.85C11.25 17.4 11.0543 17.871 10.663 18.263C10.271 18.6543 9.8 18.85 9.25 18.85C9.05 19.2 8.775 19.4793 8.425 19.688C8.075 19.896 7.68333 20 7.25 20ZM5.25 16.85H9.25V15.95H5.25V16.85ZM5.25 14.95H9.25V14H5.25V14.95ZM5.05 12H6.5V9.3L4.3 7.1L5.35 6.05L7.25 7.95L9.15 6.05L10.2 7.1L8 9.3V12H9.45C10.35 11.5667 11.0833 10.929 11.65 10.087C12.2167 9.24567 12.5 8.3 12.5 7.25C12.5 5.78333 11.9917 4.54167 10.975 3.525C9.95833 2.50833 8.71667 2 7.25 2C5.78333 2 4.54167 2.50833 3.525 3.525C2.50833 4.54167 2 5.78333 2 7.25C2 8.3 2.28333 9.24567 2.85 10.087C3.41667 10.929 4.15 11.5667 5.05 12Z" />
+                </svg>
+
+
+              </div>
+            </div>
+          </div>
+          <div className='relative  px-3 pb-0 cursor-pointer '>
+            <div className='bg-white p-2 rounded-full shadow-lg'>
+              <div className={`${current == "4" && "bg-[#6E798C]"} rounded-full p-2 text-white`} onClick={() => setCurrent('4')}>
+
+
+
+              </div>
+            </div>
           </div>
           {/* <div className='p-3 cursor-pointer'>
             <svg width="30" height="35" onClick={() => setCurrent('Admin')} viewBox="0 0 22 22" fill="black" xmlns="http://www.w3.org/2000/svg">
