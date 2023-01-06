@@ -11,6 +11,9 @@
     .admin_option {
         @apply hover:bg-[#EDECEC] pl-10 py-3 cursor-pointer;
     }
+}
 
-
+* {
+    transition-timing-function: ease-in-out;
+    transition: 0.2s;
 }
